@@ -2,11 +2,21 @@
 OCR service for text extraction from images and PDFs
 """
 
-import pytesseract
-import cv2
-import numpy as np
+# Optional imports for Railway compatibility
+try:
+    import pytesseract
+    import cv2
+    import numpy as np
+    import fitz  # PyMuPDF
+    HAS_OCR = True
+except ImportError:
+    HAS_OCR = False
+    pytesseract = None
+    cv2 = None
+    np = None
+    fitz = None
+
 from PIL import Image
-import fitz  # PyMuPDF
 import io
 import logging
 from typing import Dict, List, Tuple, NamedTuple
